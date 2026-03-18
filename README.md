@@ -1,4 +1,4 @@
-# 100 Days ML/AI Algorithm Challenge
+# 100 Days ML Algorithm Challenge
 
 A structured 100-day learning challenge to master machine learning and AI algorithms from fundamentals to cutting-edge models.
 
