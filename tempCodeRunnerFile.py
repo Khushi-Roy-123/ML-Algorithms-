@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 data = pd.read_csv('data/data.csv')
 
 X_train=data[['bedrooms','bathrooms']].values 
-y_train=data['price'].values
+y_train=data['city'].values
 
 m,n=X_train.shape
 
