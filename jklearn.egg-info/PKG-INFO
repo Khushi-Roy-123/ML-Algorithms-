@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: jklearn
+Version: 0.1.0
+Summary: A from-scratch machine learning algorithms library.
+Requires-Dist: numpy>=1.23
+Dynamic: requires-dist
+Dynamic: summary
