@@ -1,6 +1,6 @@
 import numpy as np
 
-from jklearn.linear_model import LinearRegression, LogisticRegression
+from jklearn.linear_model import LinearRegression, LogisticRegression, SVM
 
 
 def test_linear_regression_normal_equation_fit_predict():
@@ -44,3 +44,26 @@ def test_logistic_regression_binary_prediction_shape():
 
     assert preds.shape == y.shape
     assert set(np.unique(preds)).issubset({0, 1})
+
+
+def test_svm_linear_separable_fit_predict():
+    x = np.array(
+        [
+            [-2.0, -1.0],
+            [-1.5, -1.0],
+            [-1.0, -1.5],
+            [1.0, 1.5],
+            [1.5, 1.0],
+            [2.0, 1.0],
+        ]
+    )
+    y = np.array([0, 0, 0, 1, 1, 1])
+
+    m = SVM(lr=0.001, c=1.0, ep=4000)
+    m.fit(x, y)
+    p = m.predict(x)
+    s = m.decision_function(x)
+    t = np.where(y <= 0, -1, 1)
+
+    assert np.array_equal(p, y)
+    assert np.all(t * s > 0)

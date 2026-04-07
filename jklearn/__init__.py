@@ -2,6 +2,7 @@
 
 from .linear_model import LinearRegression
 from .linear_model import LogisticRegression
+from .linear_model import SVM
 from .naive_bayes import GaussianNB
 from .neighbors import KNN
 from .tree import DecisionTreeClassifier, DecisionTreeRegressor
@@ -11,6 +12,7 @@ __all__ = [
 	"KNN",
 	"LinearRegression",
 	"LogisticRegression",
+	"SVM",
 	"GaussianNB",
 	"DecisionTreeClassifier",
 	"DecisionTreeRegressor",
