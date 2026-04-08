@@ -7,6 +7,7 @@ from .naive_bayes import GaussianNB
 from .neighbors import KNN
 from .tree import DecisionTreeClassifier, DecisionTreeRegressor
 from .tree import ExtraTreesClassifier, ExtraTreesRegressor
+from .tree import GBDTRegressor
 
 __all__ = [
 	"KNN",
@@ -18,4 +19,5 @@ __all__ = [
 	"DecisionTreeRegressor",
 	"ExtraTreesClassifier",
 	"ExtraTreesRegressor",
+	"GBDTRegressor",
 ]
