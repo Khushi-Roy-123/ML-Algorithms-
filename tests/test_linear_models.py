@@ -67,3 +67,39 @@ def test_svm_linear_separable_fit_predict():
 
     assert np.array_equal(p, y)
     assert np.all(t * s > 0)
+
+
+def test_svm_rbf_xor_fit_predict():
+    x = np.array(
+        [
+            [0.0, 0.0],
+            [0.0, 1.0],
+            [1.0, 0.0],
+            [1.0, 1.0],
+        ]
+    )
+    y = np.array([0, 1, 1, 0])
+
+    m = SVM(c=10.0, ep=3000, ker="rbf", gam=2.0)
+    m.fit(x, y)
+    p = m.predict(x)
+
+    assert np.array_equal(p, y)
+
+
+def test_svm_poly_xor_fit_predict():
+    x = np.array(
+        [
+            [0.0, 0.0],
+            [0.0, 1.0],
+            [1.0, 0.0],
+            [1.0, 1.0],
+        ]
+    )
+    y = np.array([0, 1, 1, 0])
+
+    m = SVM(c=10.0, ep=3000, ker="poly", deg=2, gam=1.0, r=1.0)
+    m.fit(x, y)
+    p = m.predict(x)
+
+    assert np.array_equal(p, y)
