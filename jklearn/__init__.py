@@ -5,11 +5,13 @@ from .linear_model import LogisticRegression
 from .linear_model import SVM
 from .naive_bayes import GaussianNB
 from .neighbors import KNN
+from .tree import AdaBoostClassifier
 from .tree import DecisionTreeClassifier, DecisionTreeRegressor
 from .tree import ExtraTreesClassifier, ExtraTreesRegressor
 from .tree import GBDTRegressor
 
 __all__ = [
+	"AdaBoostClassifier",
 	"KNN",
 	"LinearRegression",
 	"LogisticRegression",
