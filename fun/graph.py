@@ -8,6 +8,7 @@ from sklearn.metrics import accuracy_score
 
 def load_initial_graph(dataset,ax):
     if dataset == "Binary":
+        
         X, y = make_blobs(n_features=2, centers=2,random_state=6)
         ax.scatter(X.T[0], X.T[1], c=y, cmap='rainbow')
         return X,y

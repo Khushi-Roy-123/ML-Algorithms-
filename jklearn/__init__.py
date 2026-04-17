@@ -9,6 +9,7 @@ from .tree import AdaBoostClassifier
 from .tree import DecisionTreeClassifier, DecisionTreeRegressor
 from .tree import ExtraTreesClassifier, ExtraTreesRegressor
 from .tree import GBDTRegressor
+from .tree import LightGBMRegressor
 
 __all__ = [
 	"AdaBoostClassifier",
@@ -22,4 +23,5 @@ __all__ = [
 	"ExtraTreesClassifier",
 	"ExtraTreesRegressor",
 	"GBDTRegressor",
+	"LightGBMRegressor",
 ]
