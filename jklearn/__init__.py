@@ -3,6 +3,7 @@
 from .linear_model import LinearRegression
 from .linear_model import LogisticRegression
 from .linear_model import SVM
+from .ensemble import StackingClassifier, StackingRegressor
 from .naive_bayes import GaussianNB
 from .neighbors import KNN
 from .tree import AdaBoostClassifier
@@ -16,6 +17,8 @@ __all__ = [
 	"KNN",
 	"LinearRegression",
 	"LogisticRegression",
+	"StackingClassifier",
+	"StackingRegressor",
 	"SVM",
 	"GaussianNB",
 	"DecisionTreeClassifier",
