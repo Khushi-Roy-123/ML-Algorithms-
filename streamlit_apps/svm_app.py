@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
-from sklearn.datasets import make_blobs
+from sklearn.datasets import make_blobs, make_circles
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
@@ -12,7 +12,10 @@ class A:
     def __init__(self):
         self.t = "SVM"
 
-    def d(self, n):
+    def d(self, n, kind):
+        if kind == "circles":
+            x, y = make_circles(n_samples=n, factor=0.45, noise=0.08, random_state=11)
+            return x, y
         x, y = make_blobs(n_samples=n, n_features=2, centers=2, cluster_std=1.3, random_state=11)
         return x, y
 
@@ -36,18 +39,26 @@ class A:
     def r(self):
         st.title(self.t)
         n = st.sidebar.slider("n", 80, 500, 220)
+        ds = st.sidebar.selectbox("dataset", ["blobs", "circles"])
         lr = st.sidebar.slider("lr", 0.0001, 0.02, 0.001)
         c = st.sidebar.slider("c", 0.1, 5.0, 1.0)
         ep = st.sidebar.slider("ep", 50, 1200, 300)
-        k = st.sidebar.selectbox("ker", ["linear", "rbf", "poly"])
-        d = st.sidebar.slider("deg", 2, 6, 3)
-        g = st.sidebar.slider("gam", 0.05, 2.0, 0.5)
-        x, y = self.d(n)
+        k = st.sidebar.selectbox("ker", ["linear", "rbf", "polynomial"])
+        gamma_opt = st.sidebar.selectbox("gam", ["scale", "auto", "manual"])
+        g = None if gamma_opt != "manual" else st.sidebar.slider("gamma", 0.05, 2.0, 0.5)
+        d = 3
+        r = 1.0
+        if k == "polynomial":
+            d = st.sidebar.slider("deg", 2, 6, 3)
+            r = st.sidebar.slider("r", 0.0, 2.0, 1.0)
+
+        x, y = self.d(n, ds)
         xt, xv, yt, yv = train_test_split(x, y, test_size=0.25, random_state=42)
-        m = SVM(lr=lr, c=c, ep=ep, ker=k, deg=d, gam=g)
+        m = SVM(lr=lr, c=c, ep=ep, ker=k, deg=d, gam=(gamma_opt if g is None else g), r=r)
         m.fit(xt, yt)
         ypv = m.predict(xv)
         st.write("acc", float(accuracy_score(yv, ypv)))
+        st.caption("Tip: Use dataset=circles with ker=rbf or ker=polynomial to see nonlinear boundaries.")
         self.p(x, y, m)
 
 

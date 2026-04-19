@@ -2,6 +2,7 @@
 
 from .linear_model import LinearRegression
 from .linear_model import LogisticRegression
+from .linear_model import SoftmaxRegression
 from .linear_model import SVM
 from .ensemble import StackingClassifier, StackingRegressor
 from .naive_bayes import GaussianNB
@@ -17,6 +18,7 @@ __all__ = [
 	"KNN",
 	"LinearRegression",
 	"LogisticRegression",
+	"SoftmaxRegression",
 	"StackingClassifier",
 	"StackingRegressor",
 	"SVM",

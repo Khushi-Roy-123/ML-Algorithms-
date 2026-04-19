@@ -34,20 +34,49 @@ class SVM:
         self.coef_ = None
         self.intercept_ = 0.0
 
+    def _kernel_name(self):
+        k = str(self.ker).strip().lower()
+        if k in {"linear", "lin"}:
+            return "linear"
+        if k in {"rbf", "gaussian"}:
+            return "rbf"
+        if k in {"poly", "polynomial"}:
+            return "poly"
+        raise ValueError("ker must be one of: linear, rbf, poly")
+
+    def _resolve_gamma(self, x):
+        n_features = x.shape[1]
+        if self.gam is None:
+            return 1.0 / n_features
+
+        if isinstance(self.gam, str):
+            g = self.gam.strip().lower()
+            if g == "scale":
+                v = float(np.var(x))
+                if v <= 0:
+                    return 1.0 / n_features
+                return 1.0 / (n_features * v)
+            if g == "auto":
+                return 1.0 / n_features
+            raise ValueError("gam must be float, None, 'scale', or 'auto'")
+
+        return float(self.gam)
+
     def _k(self, x1, x2):
-        if self.ker == "linear":
+        k = self._kernel_name()
+        if k == "linear":
             return float(np.dot(x1, x2))
-        if self.ker == "rbf":
+        if k == "rbf":
             d = x1 - x2
             return float(np.exp(-self.g * np.dot(d, d)))
-        if self.ker == "poly":
+        if k == "poly":
             return float((self.g * np.dot(x1, x2) + self.r) ** self.deg)
         raise ValueError("ker must be one of: linear, rbf, poly")
 
     def _f1(self, x):
         if self.xs is None:
             return self.b
-        if self.ker == "linear" and self.w is not None:
+        if self._kernel_name() == "linear" and self.w is not None:
             return float(np.dot(self.w, x) + self.b)
         s = 0.0
         for i in range(self.xs.shape[0]):
@@ -66,16 +95,14 @@ class SVM:
     def fit(self, x, y):
         x = np.asarray(x, dtype=float)
         y = np.asarray(y)
+        self.ker = self._kernel_name()
 
         if x.ndim == 1:
             x = x.reshape(-1, 1)
 
         t = np.where(y <= 0, -1.0, 1.0).astype(float)
         m, n = x.shape
-        if self.gam is None:
-            self.g = 1.0 / n
-        else:
-            self.g = float(self.gam)
+        self.g = self._resolve_gamma(x)
 
         a = np.zeros(m, dtype=float)
         b = 0.0

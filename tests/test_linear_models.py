@@ -1,6 +1,6 @@
 import numpy as np
 
-from jklearn.linear_model import LinearRegression, LogisticRegression, SVM
+from jklearn.linear_model import LinearRegression, LogisticRegression, SoftmaxRegression, SVM
 
 
 def test_linear_regression_normal_equation_fit_predict():
@@ -44,6 +44,51 @@ def test_logistic_regression_binary_prediction_shape():
 
     assert preds.shape == y.shape
     assert set(np.unique(preds)).issubset({0, 1})
+
+
+def test_softmax_regression_multiclass_fit_predict():
+    X = np.array(
+        [
+            [2.0, 2.0],
+            [2.2, 1.8],
+            [1.8, 2.1],
+            [-2.0, -2.0],
+            [-2.1, -1.8],
+            [-1.8, -2.2],
+            [2.0, -2.0],
+            [2.2, -1.8],
+            [1.8, -2.1],
+        ]
+    )
+    y = np.array([0, 0, 0, 1, 1, 1, 2, 2, 2])
+
+    model = SoftmaxRegression(lr=0.2, epochs=2500)
+    model.fit(X, y)
+    preds = model.predict(X)
+
+    assert preds.shape == y.shape
+    assert set(np.unique(preds)).issubset({0, 1, 2})
+    assert np.mean(preds == y) >= 0.95
+
+
+def test_softmax_regression_predict_proba_rows_sum_to_one():
+    X = np.array(
+        [
+            [1.0, 1.0],
+            [1.2, 0.8],
+            [-1.0, -1.0],
+            [-1.2, -0.8],
+            [1.0, -1.0],
+            [1.2, -0.9],
+        ]
+    )
+    y = np.array([0, 0, 1, 1, 2, 2])
+
+    model = SoftmaxRegression(lr=0.15, epochs=2000).fit(X, y)
+    probs = model.predict_proba(X)
+
+    assert probs.shape == (X.shape[0], 3)
+    assert np.allclose(np.sum(probs, axis=1), 1.0, atol=1e-6)
 
 
 def test_svm_linear_separable_fit_predict():
