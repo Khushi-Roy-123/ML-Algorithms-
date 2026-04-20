@@ -5,6 +5,7 @@ from .decision_tree import DecisionTreeClassifier, DecisionTreeRegressor
 from .extra_trees import ExtraTreesClassifier, ExtraTreesRegressor
 from .gbdt import GBDTRegressor
 from .lightgbm import LightGBMRegressor
+from .catboost import CatBoostRegressor
 
 __all__ = [
 	"AdaBoostClassifier",
@@ -14,4 +15,5 @@ __all__ = [
 	"ExtraTreesRegressor",
 	"GBDTRegressor",
 	"LightGBMRegressor",
+	"CatBoostRegressor",
 ]
