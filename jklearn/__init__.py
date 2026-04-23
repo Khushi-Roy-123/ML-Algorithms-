@@ -5,7 +5,7 @@ from .linear_model import LogisticRegression
 from .linear_model import SoftmaxRegression
 from .linear_model import SVM
 from .ensemble import StackingClassifier, StackingRegressor
-from .cluster import KMeans, HierarchicalClustering
+from .cluster import KMeans
 from .naive_bayes import GaussianNB
 from .neighbors import KNN
 from .tree import AdaBoostClassifier
@@ -24,7 +24,6 @@ __all__ = [
 	"StackingClassifier",
 	"StackingRegressor",
 	"KMeans",
-	"HierarchicalClustering",
 	"SVM",
 	"GaussianNB",
 	"DecisionTreeClassifier",
