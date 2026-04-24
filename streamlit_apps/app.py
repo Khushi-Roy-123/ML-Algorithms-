@@ -6,6 +6,7 @@ from decision_tree_regressor_app import A as DTR
 from elastic_net_regression_app import A as ENR
 from extra_trees_classifier_app import A as ETC
 from extra_trees_regressor_app import A as ETR
+from gaussian_mixture_app import A as GMM
 from gaussian_nb_app import A as GNB
 from gbdt_regressor_app import A as GBDT
 from knn_app import A as KNN
@@ -28,6 +29,7 @@ class H:
             "Logistic Regression": LOG,
             "SVM": SVM,
             "KNN": KNN,
+            "Gaussian Mixture (GMM)": GMM,
             "Gaussian NB": GNB,
             "Decision Tree Classifier": DTC,
             "Decision Tree Regressor": DTR,
