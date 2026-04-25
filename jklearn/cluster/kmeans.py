@@ -91,3 +91,28 @@ class KMeans:
 
     def fit_predict(self, x):
         return self.fit(x).lab
+
+    def elbow(self, x, k_min=1, k_max=10):
+        x = self._chk(x)
+        if k_min < 1:
+            raise ValueError("k_min must be at least 1")
+        if k_max < k_min:
+            raise ValueError("k_max must be greater than or equal to k_min")
+        if k_max > x.shape[0]:
+            raise ValueError("k_max must not exceed the number of samples")
+
+        ks = np.arange(k_min, k_max + 1)
+        ins = np.empty(ks.shape[0], dtype=float)
+
+        for i, k in enumerate(ks):
+            m = KMeans(
+                k=int(k),
+                ep=self.ep,
+                tol=self.tol,
+                n_init=self.n_init,
+                seed=self.seed,
+            )
+            m.fit(x)
+            ins[i] = m.inertia_
+
+        return ks, ins
