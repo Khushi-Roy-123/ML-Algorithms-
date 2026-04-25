@@ -8,6 +8,7 @@ from .ensemble import StackingClassifier, StackingRegressor
 from .cluster import KMeans, GaussianMixture
 from .naive_bayes import GaussianNB
 from .neighbors import KNN
+from .preprocessing import UnderSampling, OverSampling, SMOTE
 from .tree import AdaBoostClassifier
 from .tree import DecisionTreeClassifier, DecisionTreeRegressor
 from .tree import ExtraTreesClassifier, ExtraTreesRegressor
@@ -27,6 +28,9 @@ __all__ = [
 	"GaussianMixture",
 	"SVM",
 	"GaussianNB",
+	"UnderSampling",
+	"OverSampling",
+	"SMOTE",
 	"DecisionTreeClassifier",
 	"DecisionTreeRegressor",
 	"ExtraTreesClassifier",
