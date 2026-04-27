@@ -15,6 +15,7 @@ from linear_regression_app import A as LR
 from logistic_regression_app import A as LOG
 from polynomial_regression_app import A as PR
 from ridge_regression_app import A as RIR
+from stacking_app import A as STACK
 from svm_app import A as SVM
 
 
@@ -37,6 +38,7 @@ class H:
             "Extra Trees Classifier": ETC,
             "Extra Trees Regressor": ETR,
             "GBDT Regressor": GBDT,
+            "Stacking": STACK,
         }
 
     def r(self):
