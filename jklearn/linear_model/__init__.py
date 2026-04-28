@@ -7,4 +7,9 @@ from .LogisticRegression import LogisticRegression
 from .softmax_regression import SoftmaxRegression
 from .svm import SVM
 
-__all__ = ["LinearRegression", "LogisticRegression", "SoftmaxRegression", "SVM"]
+__all__ = [
+    "LinearRegression",
+    "LogisticRegression",
+    "SoftmaxRegression",
+    "SVM",
+]

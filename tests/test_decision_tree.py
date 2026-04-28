@@ -16,11 +16,11 @@ def test_decision_tree_classifier_fit_and_predict():
     )
     y = np.array([0, 0, 0, 1, 1, 1])
 
-    model = DecisionTreeClassifier(max_depth=2)
-    model.fit(X, y)
-    preds = model.predict(np.array([[1.05, 1.0], [4.05, 4.1]]))
+    m = DecisionTreeClassifier(max_depth=2)
+    m.fit(X, y)
+    p = m.predict(np.array([[1.05, 1.0], [4.05, 4.1]]))
 
-    assert np.array_equal(preds, np.array([0, 1]))
+    assert np.array_equal(p, np.array([0, 1]))
 
 
 def test_decision_tree_classifier_predict_proba_sums_to_one():
@@ -34,12 +34,12 @@ def test_decision_tree_classifier_predict_proba_sums_to_one():
     )
     y = np.array([0, 0, 1, 1])
 
-    model = DecisionTreeClassifier(max_depth=1)
-    model.fit(X, y)
-    probs = model.predict_proba(np.array([[0.05], [1.05]]))
+    m = DecisionTreeClassifier(max_depth=1)
+    m.fit(X, y)
+    pr = m.predict_proba(np.array([[0.05], [1.05]]))
 
-    assert probs.shape == (2, 2)
-    assert np.allclose(np.sum(probs, axis=1), 1.0)
+    assert pr.shape == (2, 2)
+    assert np.allclose(np.sum(pr, axis=1), 1.0)
 
 
 def test_decision_tree_regressor_fit_and_predict():
@@ -56,8 +56,8 @@ def test_decision_tree_regressor_fit_and_predict():
     )
     y = np.array([1.0, 1.2, 1.1, 4.0, 4.1, 3.9])
 
-    model = DecisionTreeRegressor(max_depth=2)
-    model.fit(X, y)
+    m = DecisionTreeRegressor(max_depth=2)
+    m.fit(X, y)
     preds = model.predict(np.array([[1.2], [4.3]]))
 
     assert preds.shape == (2,)

@@ -12,15 +12,15 @@ def test_adaboost_fit_predict_binary_classification():
     X = np.random.randn(50, 2)
     y = np.where(X[:, 0] + X[:, 1] > 0, 1, 0)
     
-    clf = AdaBoostClassifier(n_estimators=10, random_state=42)
-    clf.fit(X, y)
-    preds = clf.predict(X)
+    m = AdaBoostClassifier(n_est=10, rs=42)
+    m.fit(X, y)
+    p = m.predict(X)
     
-    assert preds.shape == y.shape
-    assert set(np.unique(preds)) == {0, 1}
+    assert p.shape == y.shape
+    assert set(np.unique(p)) == {0, 1}
     # Should achieve reasonable accuracy on training data
-    accuracy = np.mean(preds == y)
-    assert accuracy > 0.6
+    acc = np.mean(p == y)
+    assert acc > 0.6
 
 
 def test_adaboost_predict_proba():
@@ -29,15 +29,15 @@ def test_adaboost_predict_proba():
     X = np.random.randn(50, 2)
     y = np.where(X[:, 0] + X[:, 1] > 0, 1, 0)
     
-    clf = AdaBoostClassifier(n_estimators=10, random_state=42)
-    clf.fit(X, y)
-    proba = clf.predict_proba(X)
+    m = AdaBoostClassifier(n_est=10, rs=42)
+    m.fit(X, y)
+    pr = m.predict_proba(X)
     
-    assert proba.shape == (X.shape[0], 2)
+    assert pr.shape == (X.shape[0], 2)
     # Probabilities should sum to 1
-    assert np.allclose(np.sum(proba, axis=1), 1.0)
+    assert np.allclose(np.sum(pr, axis=1), 1.0)
     # Probabilities should be between 0 and 1
-    assert np.all(proba >= 0) and np.all(proba <= 1)
+    assert np.all(pr >= 0) and np.all(pr <= 1)
 
 
 def test_adaboost_1d_input():
@@ -45,11 +45,11 @@ def test_adaboost_1d_input():
     X = np.array([[0.0], [1.0], [2.0], [3.0], [4.0], [5.0]])
     y = np.array([0, 0, 0, 1, 1, 1])
     
-    clf = AdaBoostClassifier(n_estimators=5)
-    clf.fit(X, y)
-    preds = clf.predict(X)
+    m = AdaBoostClassifier(n_estimators=5)
+    m.fit(X, y)
+    p = m.predict(X)
     
-    assert preds.shape == y.shape
+    assert p.shape == y.shape
 
 
 def test_adaboost_learning_rate():
@@ -58,19 +58,19 @@ def test_adaboost_learning_rate():
     X = np.random.randn(50, 2)
     y = np.where(X[:, 0] + X[:, 1] > 0, 1, 0)
     
-    clf1 = AdaBoostClassifier(n_estimators=5, learning_rate=0.5, random_state=42)
-    clf2 = AdaBoostClassifier(n_estimators=5, learning_rate=1.0, random_state=42)
+    m1 = AdaBoostClassifier(n_estimators=5, learning_rate=0.5, random_state=42)
+    m2 = AdaBoostClassifier(n_estimators=5, learning_rate=1.0, random_state=42)
     
-    clf1.fit(X, y)
-    clf2.fit(X, y)
+    m1.fit(X, y)
+    m2.fit(X, y)
     
-    preds1 = clf1.predict(X)
-    preds2 = clf2.predict(X)
+    p1 = m1.predict(X)
+    p2 = m2.predict(X)
     
     # Different learning rates may give different results
     # Just verify they both produce valid outputs
-    assert preds1.shape == y.shape
-    assert preds2.shape == y.shape
+    assert p1.shape == y.shape
+    assert p2.shape == y.shape
 
 
 def test_adaboost_invalid_x_shape():

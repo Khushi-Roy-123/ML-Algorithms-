@@ -1,41 +1,56 @@
 """Top-level package exports for jklearn."""
 
-from .linear_model import LinearRegression
-from .linear_model import LogisticRegression
-from .linear_model import SoftmaxRegression
-from .linear_model import SVM
+from .linear_model import (
+    LinearRegression,
+    LogisticRegression,
+    SoftmaxRegression,
+    SVM,
+)
 from .ensemble import StackingClassifier, StackingRegressor
 from .cluster import KMeans, GaussianMixture
 from .naive_bayes import GaussianNB
 from .neighbors import KNN
 from .preprocessing import UnderSampling, OverSampling, SMOTE
-from .tree import AdaBoostClassifier
-from .tree import DecisionTreeClassifier, DecisionTreeRegressor
-from .tree import ExtraTreesClassifier, ExtraTreesRegressor
-from .tree import GBDTRegressor
-from .tree import LightGBMRegressor
-from .tree import CatBoostRegressor
+from .tree import (
+    AdaBoostClassifier,
+    DecisionTreeClassifier,
+    DecisionTreeRegressor,
+    ExtraTreesClassifier,
+    ExtraTreesRegressor,
+    GBDTRegressor,
+    LightGBMRegressor,
+    CatBoostRegressor,
+)
 
 __all__ = [
-	"AdaBoostClassifier",
-	"KNN",
-	"LinearRegression",
-	"LogisticRegression",
-	"SoftmaxRegression",
-	"StackingClassifier",
-	"StackingRegressor",
-	"KMeans",
-	"GaussianMixture",
-	"SVM",
-	"GaussianNB",
-	"UnderSampling",
-	"OverSampling",
-	"SMOTE",
-	"DecisionTreeClassifier",
-	"DecisionTreeRegressor",
-	"ExtraTreesClassifier",
-	"ExtraTreesRegressor",
-	"GBDTRegressor",
-	"LightGBMRegressor",
-	"CatBoostRegressor",
+    # Linear models
+    "LinearRegression",
+    "LogisticRegression",
+    "SoftmaxRegression",
+    "SVM",
+    # Clustering
+    "KMeans",
+    "GaussianMixture",
+    # Neighbors
+    "KNN",
+    # Naive Bayes
+    "GaussianNB",
+    # Tree-based models
+    "DecisionTreeClassifier",
+    "DecisionTreeRegressor",
+    "ExtraTreesClassifier",
+    "ExtraTreesRegressor",
+    "AdaBoostClassifier",
+    "GBDTRegressor",
+    "LightGBMRegressor",
+    "CatBoostRegressor",
+    # Ensemble
+    "StackingClassifier",
+    "StackingRegressor",
+    # Preprocessing
+    "UnderSampling",
+    "OverSampling",
+    "SMOTE",
 ]
+
+__version__ = "0.1.0"
