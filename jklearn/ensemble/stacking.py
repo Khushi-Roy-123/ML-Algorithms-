@@ -4,7 +4,6 @@ import numpy as np
 
 from jklearn.linear_model import LinearRegression, LogisticRegression
 
-
 class _BaseStacking:
     def __init__(self, estimators, final_estimator=None, n_folds=5, shuffle=True, random_state=42, passthrough=False):
         self.estimators = estimators
@@ -124,7 +123,6 @@ class _BaseStacking:
             meta_features = np.hstack([meta_features, X])
         return meta_features
 
-
 class StackingRegressor(_BaseStacking):
     def __init__(self, estimators, final_estimator=None, n_folds=5, shuffle=True, random_state=42, passthrough=False):
         super().__init__(estimators, final_estimator, n_folds, shuffle, random_state, passthrough)
@@ -164,7 +162,6 @@ class StackingRegressor(_BaseStacking):
         if self.passthrough:
             meta_features = np.hstack([meta_features, X])
         return self.final_estimator_.predict(meta_features)
-
 
 class StackingClassifier(_BaseStacking):
     def __init__(self, estimators, final_estimator=None, n_folds=5, shuffle=True, random_state=42, passthrough=False):

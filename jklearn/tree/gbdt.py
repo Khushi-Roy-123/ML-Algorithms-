@@ -2,7 +2,6 @@ import numpy as np
 
 from .decision_tree import DecisionTreeRegressor
 
-
 class GBDTRegressor:
     def __init__(self, n=100, lr=0.1, md=3, ms=2, rs=None):
         self.n = n

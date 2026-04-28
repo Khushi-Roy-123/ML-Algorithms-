@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class GaussianMixture:
     def __init__(
         self,

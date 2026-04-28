@@ -1,8 +1,7 @@
 import numpy as np
 
-
 class LightGBMRegressor:
-    """Histogram-based gradient boosting regressor (LightGBM-style)."""
+    
 
     def __init__(
         self,

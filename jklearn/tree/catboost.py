@@ -2,9 +2,8 @@ import numpy as np
 
 from .decision_tree import DecisionTreeRegressor
 
-
 class CatBoostRegressor:
-    """Gradient boosting regressor with simple ordered target encoding for categorical features."""
+    
 
     def __init__(
         self,

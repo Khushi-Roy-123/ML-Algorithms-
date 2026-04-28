@@ -1,28 +1,11 @@
-"""AdaBoost (Adaptive Boosting) classifier implementation."""
+
 
 import numpy as np
 
 from .decision_tree import DecisionTreeClassifier
 
-
 class AdaBoostClassifier:
-    """AdaBoost classifier that boosts weak learners by focusing on misclassified samples.
     
-    AdaBoost iteratively trains weak learners (decision stumps by default) on weighted
-    versions of the dataset, with weights adjusted to emphasize misclassified samples.
-    The final prediction is a weighted combination of all weak learners.
-    
-    Parameters
-    ----------
-    n_estimators : int, default=50
-        Number of weak learners (stumps) to train.
-    learning_rate : float, default=1.0
-        Learning rate that shrinks the contribution of each classifier.
-    max_depth : int, default=1
-        Maximum depth of the weak learners (decision stumps).
-    random_state : int or None, default=None
-        Random state for reproducibility.
-    """
 
     def __init__(self, n_estimators=50, learning_rate=1.0, max_depth=1, random_state=None):
         self.n_estimators = n_estimators
@@ -36,20 +19,7 @@ class AdaBoostClassifier:
         self.n_classes_ = None
 
     def fit(self, X, y):
-        """Fit the AdaBoost classifier.
         
-        Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Training data.
-        y : array-like of shape (n_samples,)
-            Target values.
-            
-        Returns
-        -------
-        self : object
-            Returns self.
-        """
         X = np.asarray(X, dtype=float)
         y = np.asarray(y)
 
@@ -112,18 +82,7 @@ class AdaBoostClassifier:
         return self
 
     def predict(self, X):
-        """Predict class for X.
         
-        Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Samples to predict.
-            
-        Returns
-        -------
-        y : array of shape (n_samples,)
-            Predicted class labels.
-        """
         if not self.estimators_:
             raise ValueError("Model is not fitted yet. Call fit(X, y) first.")
 
@@ -146,18 +105,7 @@ class AdaBoostClassifier:
         return self.classes_[class_indices]
 
     def predict_proba(self, X):
-        """Predict class probabilities for X.
         
-        Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Samples to predict.
-            
-        Returns
-        -------
-        proba : array of shape (n_samples, n_classes)
-            Class probabilities.
-        """
         if not self.estimators_:
             raise ValueError("Model is not fitted yet. Call fit(X, y) first.")
 

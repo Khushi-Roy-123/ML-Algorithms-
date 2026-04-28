@@ -1,4 +1,4 @@
-"""Neighbors algorithms."""
+
 
 from .knn import KNN
 

@@ -1,8 +1,7 @@
 import numpy as np
 
-
 class LinearRegression:
-    """Ordinary Least Squares Linear Regression with optional gradient descent training."""
+    
 
     def __init__(self, fit_intercept=True, solver="normal", lr=0.01, epochs=1000):
         self.fit_intercept = fit_intercept

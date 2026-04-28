@@ -6,7 +6,6 @@ import numpy as np
 
 from .decision_tree import DecisionTreeClassifier, DecisionTreeRegressor
 
-
 def _resolve_max_features(max_features, n_features):
     if max_features is None:
         return n_features
@@ -25,7 +24,6 @@ def _resolve_max_features(max_features, n_features):
             raise ValueError("int max_features must be at least 1")
         return min(n_features, max_features)
     raise ValueError("Unsupported max_features value")
-
 
 class _ExtraTreeClassifier(DecisionTreeClassifier):
     def __init__(self, max_depth=None, min_samples_split=2, min_impurity_decrease=0.0, max_features=None, n_thresholds=10, random_state=None):
@@ -76,7 +74,6 @@ class _ExtraTreeClassifier(DecisionTreeClassifier):
 
         return {"feature_index": best_feature, "threshold": best_threshold, "gain": best_gain}
 
-
 class _ExtraTreeRegressor(DecisionTreeRegressor):
     def __init__(self, max_depth=None, min_samples_split=2, min_impurity_decrease=0.0, max_features=None, n_thresholds=10, random_state=None):
         super().__init__(max_depth=max_depth, min_samples_split=min_samples_split, min_impurity_decrease=min_impurity_decrease)
@@ -126,9 +123,8 @@ class _ExtraTreeRegressor(DecisionTreeRegressor):
 
         return {"feature_index": best_feature, "threshold": best_threshold, "gain": best_gain}
 
-
 class ExtraTreesClassifier:
-    """Extremely randomized tree ensemble for classification."""
+    
 
     def __init__(self, n_estimators=100, max_depth=None, min_samples_split=2, min_impurity_decrease=0.0, max_features="sqrt", n_thresholds=10, bootstrap=False, random_state=None):
         self.n_estimators = n_estimators
@@ -206,9 +202,8 @@ class ExtraTreesClassifier:
         class_indices = np.argmax(probabilities, axis=1)
         return self.classes_[class_indices]
 
-
 class ExtraTreesRegressor:
-    """Extremely randomized tree ensemble for regression."""
+    
 
     def __init__(self, n_estimators=100, max_depth=None, min_samples_split=2, min_impurity_decrease=0.0, max_features=1.0, n_thresholds=10, bootstrap=False, random_state=None):
         self.n_estimators = n_estimators

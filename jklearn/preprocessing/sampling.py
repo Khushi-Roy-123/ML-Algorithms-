@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class UnderSampling:
     def __init__(self, seed=42):
         self.seed = seed
@@ -32,7 +31,6 @@ class UnderSampling:
         r.shuffle(ids)
         return x[ids], y[ids]
 
-
 class OverSampling:
     def __init__(self, seed=42):
         self.seed = seed
@@ -63,7 +61,6 @@ class OverSampling:
         ids = np.concatenate(ids)
         r.shuffle(ids)
         return x[ids], y[ids]
-
 
 class SMOTE:
     def __init__(self, k=5, seed=42):

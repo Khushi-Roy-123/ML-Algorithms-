@@ -1,8 +1,7 @@
 import numpy as np
 
-
 class GaussianNB:
-    """Gaussian Naive Bayes classifier for continuous features."""
+    
 
     def __init__(self, var_smoothing=1e-9):
         self.var_smoothing = var_smoothing

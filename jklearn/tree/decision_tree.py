@@ -2,7 +2,6 @@ from dataclasses import dataclass
 
 import numpy as np
 
-
 @dataclass
 class _Node:
     feature_index: int | None = None
@@ -15,9 +14,8 @@ class _Node:
     def is_leaf(self) -> bool:
         return self.value is not None
 
-
 class DecisionTreeClassifier:
-    """Binary decision tree classifier using the CART splitting criterion."""
+    
 
     def __init__(self, max_depth=None, min_samples_split=2, min_impurity_decrease=0.0):
         self.max_depth = max_depth
@@ -149,9 +147,8 @@ class DecisionTreeClassifier:
             return self._traverse_tree(x, node.left)
         return self._traverse_tree(x, node.right)
 
-
 class DecisionTreeRegressor:
-    """Decision tree regressor using MSE (Mean Squared Error) as the splitting criterion."""
+    
 
     def __init__(self, max_depth=None, min_samples_split=2, min_impurity_decrease=0.0):
         self.max_depth = max_depth
@@ -160,19 +157,7 @@ class DecisionTreeRegressor:
         self.tree_ = None
 
     def fit(self, X, y):
-        """Build decision tree regressor.
         
-        Parameters:
-        -----------
-        X : array-like of shape (n_samples, n_features)
-            Training data
-        y : array-like of shape (n_samples,)
-            Target values
-            
-        Returns:
-        --------
-        self
-        """
         X = np.asarray(X, dtype=float)
         y = np.asarray(y, dtype=float)
 
@@ -187,18 +172,7 @@ class DecisionTreeRegressor:
         return self
 
     def predict(self, X):
-        """Predict target values.
         
-        Parameters:
-        -----------
-        X : array-like of shape (n_samples, n_features)
-            Samples to predict
-            
-        Returns:
-        --------
-        y_pred : array of shape (n_samples,)
-            Predicted values
-        """
         if self.tree_ is None:
             raise ValueError("Model is not fitted yet. Call fit(X, y) first.")
 
@@ -213,7 +187,7 @@ class DecisionTreeRegressor:
         return predictions
 
     def _grow_tree(self, X, y, depth):
-        """Recursively grow the regression tree."""
+        
         n_samples, _ = X.shape
 
         # Stopping criteria
@@ -241,7 +215,7 @@ class DecisionTreeRegressor:
         )
 
     def _best_split(self, X, y):
-        """Find the best split for regression using MSE criterion."""
+        
         n_samples, n_features = X.shape
         parent_mse = self._mse(y)
         best_gain = 0.0
@@ -282,14 +256,14 @@ class DecisionTreeRegressor:
         return {"feature_index": best_feature, "threshold": best_threshold, "gain": best_gain}
 
     def _mse(self, y):
-        """Calculate Mean Squared Error."""
+        
         if y.size == 0:
             return 0.0
         mean = np.mean(y)
         return np.mean((y - mean) ** 2)
 
     def _traverse_tree(self, x, node):
-        """Traverse tree to find the leaf for a sample."""
+        
         if node.is_leaf:
             return node
 

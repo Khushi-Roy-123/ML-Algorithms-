@@ -1,4 +1,4 @@
-"""Decision tree algorithms."""
+
 
 from .adaboost import AdaBoostClassifier
 from .decision_tree import DecisionTreeClassifier, DecisionTreeRegressor

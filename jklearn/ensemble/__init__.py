@@ -1,4 +1,4 @@
-"""Ensemble algorithms for jklearn."""
+
 
 from .stacking import StackingClassifier, StackingRegressor
 
