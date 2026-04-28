@@ -10,7 +10,7 @@ setup(
     description="A from-scratch machine learning algorithms library for educational purposes.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/jklearn",
+    url="https://github.com/Khushi-Roy-123/ML-Algorithms-",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
