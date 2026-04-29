@@ -59,7 +59,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/jklearn.git
+git clone https://github.com/Khushi-Roy-123/jklearn.git
 cd jklearn
 
 # Install in development mode
