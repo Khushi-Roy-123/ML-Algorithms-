@@ -58,7 +58,7 @@ def test_decision_tree_regressor_fit_and_predict():
 
     m = DecisionTreeRegressor(max_depth=2)
     m.fit(X, y)
-    preds = model.predict(np.array([[1.2], [4.3]]))
+    preds = m.predict(np.array([[1.2], [4.3]]))
 
     assert preds.shape == (2,)
     assert isinstance(preds[0], (float, np.floating))

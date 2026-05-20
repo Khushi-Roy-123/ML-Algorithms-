@@ -7,7 +7,21 @@ from .decision_tree import DecisionTreeClassifier
 class AdaBoostClassifier:
     
 
-    def __init__(self, n_estimators=50, learning_rate=1.0, max_depth=1, random_state=None):
+    def __init__(
+        self,
+        n_estimators=50,
+        learning_rate=1.0,
+        max_depth=1,
+        random_state=None,
+        n_est=None,
+        rs=None,
+    ):
+        # Backward-compatible aliases used by older examples/tests.
+        if n_est is not None:
+            n_estimators = n_est
+        if rs is not None:
+            random_state = rs
+
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.max_depth = max_depth

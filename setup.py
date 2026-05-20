@@ -6,11 +6,11 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="jklearn",
     version="0.1.0",
-    author="Khushi",
+    author="KhushiRoy",
     description="A from-scratch machine learning algorithms library for educational purposes.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Khushi-Roy-123/ML-Algorithms-",
+    url="https://github.com/KhushiRoy/jklearn",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -23,6 +23,8 @@ setup(
         "Intended Audience :: Education",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
     ],
+    author_email="",
+    license="MIT",
     python_requires=">=3.8",
     install_requires=[
         "numpy>=1.23",
@@ -36,5 +38,10 @@ setup(
         "streamlit": [
             "streamlit>=1.32",
         ],
+    },
+    include_package_data=True,
+    project_urls={
+        "Source": "https://github.com/KhushiRoy/jklearn",
+        "Tracker": "https://github.com/KhushiRoy/jklearn/issues",
     },
 )
